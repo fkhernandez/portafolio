@@ -15,7 +15,7 @@ const Footer = () => {
           Reach out to me today and let&apos;s discuss how I can help you
           achieve your goals.
         </p>
-        <a href="mailto:easy-wolf.9t@icloud.com">
+        <a href={`mailto:${process.env.MY_EMAIL}`}>
           <BorderButton
             title="Let's get in touch&nbsp;"
             icon={<FaLocationArrow />}

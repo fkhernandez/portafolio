@@ -6,7 +6,7 @@ import { GlobeDemo } from "./GridGlobe";
 import BorderButton from "./BorderButton";
 import { useState } from "react";
 import { FaLocationArrow } from "react-icons/fa";
-import {BackgroundBeamsWithCollision, LampContainer, LampDemo, WavyBackground} from "./Lamp";
+import {WavyBackground} from "./Lamp";
 import { motion } from "framer-motion";
 
 export const BentoGrid = ({
@@ -160,7 +160,7 @@ export const BentoGridItem = ({
               {/* add handleCopy() for the copy the text */}
 
 
-            <a href="mailto:easy-wolf.9t@icloud.com">
+            <a href={`mailto:${process.env.MY_EMAIL}`}>
               <BorderButton
                   title="Let's get in touch&nbsp;"
                   icon={<FaLocationArrow />}
