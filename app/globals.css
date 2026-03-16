@@ -70,16 +70,40 @@
     * {
       @apply border-border !scroll-smooth;
     }
+      html {
+        color-scheme: dark;
+      }
     body {
-      @apply bg-background text-foreground;
+        @apply bg-background text-foreground;
+        background-image:
+          radial-gradient(circle at top, rgba(203, 172, 249, 0.16), transparent 28%),
+          radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.12), transparent 24%),
+          linear-gradient(180deg, #020617 0%, #000319 35%, #020617 100%);
+        font-family: var(--font-sans), sans-serif;
     }
     button {
       @apply active:outline-none;
     }
+      ::selection {
+        background: rgba(203, 172, 249, 0.35);
+        color: #ffffff;
+      }
   }
   
   @layer utilities {
     .heading {
-      @apply font-bold text-4xl md:text-5xl text-center;
+        @apply text-center text-3xl font-semibold leading-tight tracking-tight md:text-5xl lg:text-6xl;
+      }
+
+      .section-shell {
+        @apply relative py-16 md:py-24;
+      }
+
+      .section-copy {
+        @apply mx-auto mt-4 max-w-2xl text-center text-sm leading-7 text-white-100 md:text-base;
+      }
+
+      .surface-panel {
+        @apply border border-white/10 bg-black-100/80 shadow-[0_24px_80px_-40px_rgba(76,92,163,0.45)];
     }
   }

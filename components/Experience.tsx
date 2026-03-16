@@ -6,43 +6,43 @@ import Image from "next/image";
 
 const Experience = () => {
   return (
-    <div className="py-20 w-full">
+    <section className="section-shell w-full">
+      <p className="text-center text-sm font-medium uppercase tracking-[0.28em] text-purple/80">
+        Experience
+      </p>
       <h1 className="heading">
         My <span className="text-purple">work experience</span>
       </h1>
+      <p className="section-copy">
+        A mix of full-stack implementation, UI delivery, and product-focused frontend work shaped around maintainability and performance.
+      </p>
 
-      <div className="w-full mt-12 grid lg:grid-cols-4 grid-cols-1 gap-10">
+      <div className="mt-12 grid w-full grid-cols-1 gap-6 lg:grid-cols-4 lg:gap-7">
         {workExperience.map((card) => (
           <Button
             key={card.id}
-            //   random duration will be fun , I think , may be not
-            duration={Math.floor(Math.random() * 10000) + 10000}
+            duration={9000 + card.id * 1500}
             borderRadius="1.75rem"
             style={{
-              //   add these two
-              //   you can generate the color from here https://cssgradient.io/
-              background: "rgb(4,7,29)",
-              backgroundColor:
-                "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-              // add this border radius to make it more rounded so that the moving border is more realistic
+              backgroundImage:
+                "linear-gradient(135deg, rgba(4,7,29,0.94) 0%, rgba(12,14,35,0.98) 100%)",
               borderRadius: `calc(1.75rem* 0.96)`,
             }}
-            // remove bg-white dark:bg-slate-900
-            className="flex-1 text-black dark:text-white border-neutral-200 dark:border-slate-800"
+            className="flex-1 border-white/10 text-white"
           >
-            <div className="flex lg:flex-row flex-col lg:items-center p-3 py-6 md:p-5 lg:p-10 gap-2">
+            <div className="flex flex-col gap-4 p-5 md:p-6 lg:flex-row lg:items-center lg:gap-5 lg:p-8">
               <Image
                 src={card.thumbnail}
                 alt={card.thumbnail}
-                className="lg:w-32 md:w-20 w-16"
+                className="h-auto w-16 md:w-20 lg:w-24"
                 width={200}
                 height={200}
               />
-              <div className="lg:ms-5">
-                <h1 className="text-start text-xl md:text-2xl font-bold">
+              <div className="lg:ms-2">
+                <h2 className="text-start text-xl font-semibold tracking-tight md:text-2xl">
                   {card.title}
-                </h1>
-                <p className="text-start text-white-100 mt-3 font-semibold">
+                </h2>
+                <p className="mt-3 text-start text-sm leading-7 text-white-100 md:text-base">
                   {card.desc}
                 </p>
               </div>
@@ -50,7 +50,7 @@ const Experience = () => {
           </Button>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

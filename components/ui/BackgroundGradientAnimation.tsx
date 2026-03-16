@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 export const BackgroundGradientAnimation = ({
   gradientBackgroundStart = "rgb(108, 0, 162)",
@@ -34,11 +34,9 @@ export const BackgroundGradientAnimation = ({
   containerClassName?: string;
 }) => {
   const interactiveRef = useRef<HTMLDivElement>(null);
+  const currentPosition = useRef({ x: 0, y: 0 });
+  const targetPosition = useRef({ x: 0, y: 0 });
 
-  const [curX, setCurX] = useState(0);
-  const [curY, setCurY] = useState(0);
-  const [tgX, setTgX] = useState(0);
-  const [tgY, setTgY] = useState(0);
   useEffect(() => {
     document.body.style.setProperty(
       "--gradient-background-start",
@@ -56,35 +54,63 @@ export const BackgroundGradientAnimation = ({
     document.body.style.setProperty("--pointer-color", pointerColor);
     document.body.style.setProperty("--size", size);
     document.body.style.setProperty("--blending-value", blendingValue);
-  }, []);
+  }, [
+    blendingValue,
+    fifthColor,
+    firstColor,
+    fourthColor,
+    gradientBackgroundEnd,
+    gradientBackgroundStart,
+    pointerColor,
+    secondColor,
+    size,
+    thirdColor,
+  ]);
 
   useEffect(() => {
-    function move() {
-      if (!interactiveRef.current) {
-        return;
-      }
-      setCurX(curX + (tgX - curX) / 20);
-      setCurY(curY + (tgY - curY) / 20);
-      interactiveRef.current.style.transform = `translate(${Math.round(
-        curX
-      )}px, ${Math.round(curY)}px)`;
+    if (!interactive) {
+      return;
     }
 
-    move();
-  }, [tgX, tgY]);
+    let animationFrame = 0;
+
+    const move = () => {
+      if (interactiveRef.current) {
+        currentPosition.current.x +=
+          (targetPosition.current.x - currentPosition.current.x) / 20;
+        currentPosition.current.y +=
+          (targetPosition.current.y - currentPosition.current.y) / 20;
+        interactiveRef.current.style.transform = `translate(${Math.round(
+          currentPosition.current.x
+        )}px, ${Math.round(currentPosition.current.y)}px)`;
+      }
+
+      animationFrame = requestAnimationFrame(move);
+    };
+
+    animationFrame = requestAnimationFrame(move);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+    };
+  }, [interactive]);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (interactiveRef.current) {
       const rect = interactiveRef.current.getBoundingClientRect();
-      setTgX(event.clientX - rect.left);
-      setTgY(event.clientY - rect.top);
+      targetPosition.current = {
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top,
+      };
     }
   };
 
-  const [isSafari, setIsSafari] = useState(false);
-  useEffect(() => {
-    setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
-  }, []);
+  const isSafari = useMemo(
+    () =>
+      typeof navigator !== "undefined" &&
+      /^((?!chrome|android).)*safari/i.test(navigator.userAgent),
+    []
+  );
 
   return (
     <div

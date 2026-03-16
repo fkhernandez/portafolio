@@ -4,7 +4,7 @@
 
 
 import { projects } from '@/data'
-import { div } from 'three/webgpu'
+import Image from 'next/image'
 import { PinContainer } from './ui/3d-pin'
 import { FaLocationArrow } from 'react-icons/fa'
 
@@ -22,12 +22,14 @@ const RecentProjects = () => {
             <PinContainer title={link} href={link}>
               <div className='relative flex items-center justify-center sm:w-[570px] sm:h-[40vh] w-[80vw] overflow-hidden h-[30vh] mb-10'>
                 <div className='relative w-full h-full overflow-hidden lg:rounded-3xl' style={{ backgroundColor: "#13162D" }}>
-                  <img src='/bg.png' alt='bg-img'/>
+                  <Image src='/bg.png' alt='Project background' fill className='object-cover' />
                 </div>
-                <img 
+                <Image 
                   src={img} 
                   alt={title}
-                  className='z-10 absolute bottom-0' />
+                  width={570}
+                  height={240}
+                  className='z-10 absolute bottom-0 h-auto w-full object-contain' />
               </div>
               <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
                 {title}
@@ -53,7 +55,7 @@ const RecentProjects = () => {
                         transform: `translateX(-${5 * index + 2}px)`,
                       }}
                     >
-                      <img src={icon} alt="icon5" className="p-2" />
+                      <Image src={icon} alt="Project technology icon" width={40} height={40} className="p-2" />
                     </div>
                   ))}
                 </div>

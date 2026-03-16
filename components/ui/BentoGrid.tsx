@@ -20,7 +20,7 @@ export const BentoGrid = ({
   return (
     <div
       className={cn(
-        "grid md:auto-rows-[18rem] grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto ",
+        "mx-auto grid max-w-7xl grid-cols-1 gap-5 md:auto-rows-[19rem] md:grid-cols-3 lg:auto-rows-[20rem]",
         className
       )}
     >
@@ -64,16 +64,15 @@ export const BentoGridItem = ({
   return (
     <div
       className={cn(
-        "row-span-1 overflow-hidden rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none relative justify-between flex flex-col space-y-4 border border-white/[0.1]",
+        "surface-panel group/bento relative row-span-1 flex flex-col justify-between overflow-hidden rounded-[1.75rem] border border-white/[0.1] transition duration-300 hover:-translate-y-1 hover:border-white/15 hover:shadow-[0_30px_80px_-45px_rgba(76,92,163,0.8)]",
         className
       )}
       style={{
-        //   I can generate the color from here https://cssgradient.io/
-        background: "rgb(4,7,29)",
-        backgroundColor:
-          "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
+        backgroundImage:
+          "linear-gradient(180deg, rgba(4,7,29,0.96) 0%, rgba(12,14,35,0.98) 100%)",
       }}
     >
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(203,172,249,0.16),transparent_32%)] opacity-70" />
 
       <div className={`${id === 6 && "flex justify-center"} h-full`}>
         <div className="w-full h-full absolute">
@@ -107,16 +106,16 @@ export const BentoGridItem = ({
         <div
           className={cn(
             titleClassName,
-            "group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col px-5 p-5 lg:p-10"
+            "relative flex min-h-40 flex-col px-5 py-6 transition duration-200 group-hover/bento:translate-x-1 md:h-full lg:p-8"
           )}
         >
           <div 
-            className="font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-sm text-[#C1C2D3] z-10"
+            className="z-10 max-w-40 text-xs font-medium uppercase tracking-[0.24em] text-white-200 md:text-[0.7rem]"
           >
             {description}
           </div>
           <div
-            className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}
+            className="z-10 mt-3 max-w-[22rem] text-xl font-semibold leading-snug tracking-tight text-white md:text-2xl lg:text-3xl"
           >
             {title}
           </div>
@@ -133,23 +132,21 @@ export const BentoGridItem = ({
 
         {id === 3 && (
 
-          <div className="flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2">
-            <div className="flex flex-col gap-3 lg:gap-7">
-              {/* Here I have the items i want to map and then render each one of them as item */}
+          <div className="absolute -right-2 top-8 flex w-fit gap-2 lg:right-3 lg:gap-4">
+            <div className="flex flex-col gap-3 lg:gap-5">
               {['React.JS', 'Next.JS', 'TypeScript'].map
               ((item) => (
-                <span key={item} className="lg:py-2 lg:px-1 py-2 px-3 text-xs opacity-50 rounded-lg text-center bg-[#10132E]">
+                <span key={item} className="rounded-full border border-white/5 bg-[#10132E]/90 px-3 py-2 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-white/65 lg:px-4">
                   {item}
                 </span>
               ))}
-              <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"/>
+              <span className="rounded-full bg-[#10132E]/80 px-4 py-4"/>
             </div>
-            <div className="flex flex-col gap-3 lg:gap-7">
-              <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"/>
-              {/* Here I have the items i want to map and then render each one of them as item */}
+            <div className="flex flex-col gap-3 lg:gap-5">
+              <span className="rounded-full bg-[#10132E]/80 px-4 py-4"/>
               {['PostgreSQL', 'Tailwind', 'MongoDB'].map
               ((item) => (
-                <span key={item} className="lg:py-2 lg:px-1 py-2 px-3 text-xs opacity-50 rounded-lg text-center bg-[#10132E]">
+                <span key={item} className="rounded-full border border-white/5 bg-[#10132E]/90 px-3 py-2 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-white/65 lg:px-4">
                   {item}
                 </span>
               ))}
@@ -158,18 +155,13 @@ export const BentoGridItem = ({
         )}
 
         {id === 6 && (
-          <div className="mt-5 relative">
-            {/* button border magic from tailwind css buttons  */}
-              {/* add rounded-md h-8 md:h-8, remove rounded-full */}
-              {/* remove focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 */}
-              {/* add handleCopy() for the copy the text */}
-
-
-            <a href={`mailto:${process.env.MY_EMAIL}`}>
+          <div className="relative mt-6">
+            <a href={`mailto:${process.env.MY_EMAIL ?? "frankjaim@icloud.com"}`}>
               <BorderButton
                   title="Let's get in touch&nbsp;"
                   icon={<FaLocationArrow />}
                   position="right"
+                  otherClases="gap-2 bg-slate-950/90 text-sm font-semibold text-white"
               />
             </a>
           </div>

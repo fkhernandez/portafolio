@@ -1,18 +1,3 @@
-import { icons } from "@tabler/icons-react";
-import React from "react";
-import { IconHome, IconMessage, IconUser } from "@tabler/icons-react";
-import Clients from "@/components/Clients";
-import Experience from "@/components/Experience";
-import Grid from "@/components/Grid";
-import Hero from "@/components/Hero";
-import RecentProjects from "@/components/RecentProjects";
-import { FloatingNav } from "@/components/ui/FloatingNav";
-import  Approach  from "@/components/Approach";
-import Image from "next/image";
-import { use } from "react";
-import Footer from "@/components/Footer";
-import { FaHome } from "react-icons/fa";
-
 // export const navItems = [
 //     { name: "Home", link: "#home", icon: <FaHome/>},
 //     { name: "About", link: "#about" },

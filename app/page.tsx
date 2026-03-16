@@ -1,25 +1,24 @@
 
-
 import Clients from "@/components/Clients";
 import Experience from "@/components/Experience";
 import Grid from "@/components/Grid";
 import Hero from "@/components/Hero";
 import { FloatingNav } from "@/components/ui/FloatingNav";
-import  Approach  from "@/components/Approach";
+import Approach from "@/components/Approach";
 import Footer from "@/components/Footer";
 import { FaHome } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <main className="relative bg-black-100 flex justify-center items-center flex-col mx-auto sm:px-10 px-5 overflow-clip">
-      <div className="max-w-7xl w-full">
-        <FloatingNav navItems={[
-          { name: "", link: "#home", icon: <FaHome/>},
-          { name: "About", link: "#about" },
-          { name: "Testimonials", link: "#testimonials" },
-          { name: "Contact", link: "#contact" },
-        ]} />
-        <Hero />
+    <main className="relative mx-auto flex min-h-screen flex-col items-center justify-center overflow-x-clip bg-black-100">
+      <FloatingNav navItems={[
+        { name: "", link: "#home", icon: <FaHome /> },
+        { name: "About", link: "#about" },
+        { name: "Testimonials", link: "#testimonials" },
+        { name: "Contact", link: "#contact" },
+      ]} />
+      <Hero />
+      <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <Grid />
         {/* <RecentProjects /> */}
         <Clients />

@@ -3,11 +3,14 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const inter = Inter({ subsets: ["latin"] });
+const sans = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
-  title: "Frank's Portfolio",
-  description: "Modern portfolio website built with Next.js",
+  title: "Frank Hernandez | Next.js Developer",
+  description: "Portfolio of Frank Hernandez, focused on building fast, modern Next.js products with polished frontend execution.",
 };
 
 export default function RootLayout({
@@ -16,12 +19,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${sans.variable} min-h-screen bg-black-100 text-white antialiased`}>
       <ThemeProvider
             attribute="class"
             defaultTheme="dark"
-            enableSystem
+            enableSystem={false}
+            forcedTheme="dark"
             disableTransitionOnChange
           >
         {children}

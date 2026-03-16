@@ -5,36 +5,46 @@ import BorderButton from "./ui/BorderButton";
 import Image from "next/image";
 
 const Footer = () => {
+  const email = process.env.MY_EMAIL ?? "frankjaim@icloud.com";
+  const activeSocialMedia = socialMedia.filter(({ link }) => Boolean(link));
+
   return (
-    <footer className="w-full pt-20 pb-10 mb-20 md:mb-10" id="contact">
-      <div className="flex flex-col items-center">
-        <h1 className="heading lg:max-w-[45vw]">
+    <footer className="mb-10 w-full pb-10 pt-8 md:mb-0" id="contact">
+      <div className="surface-panel flex flex-col items-center rounded-[2rem] px-6 py-12 text-center md:px-10 md:py-14">
+        <p className="text-sm font-medium uppercase tracking-[0.28em] text-purple/80">
+          Contact
+        </p>
+        <h1 className="heading mt-4 lg:max-w-[45vw]">
           Ready to take <span className="text-purple">your</span> digital
           presence to the next level?
         </h1>
-        <p className="text-white-200 md:mt-10 my-5 text-center">
+        <p className="my-5 max-w-2xl text-center text-sm leading-7 text-white-200 md:mt-8 md:text-base">
           Reach out to me today and let&apos;s discuss how I can help you
           achieve your goals.
         </p>
-        <a href={`mailto:${process.env.MY_EMAIL}`}>
+        <a href={`mailto:${email}`}>
           <BorderButton
             title="Let's get in touch&nbsp;"
             icon={<FaLocationArrow />}
             position="right"
+            otherClases="gap-2 bg-slate-950/90 text-sm font-semibold text-white"
           />
         </a>
       </div>
-      <div className="flex mt-16 md:flex-row flex-col justify-between items-center">
-        <p className="md:text-base text-sm md:font-normal font-light sm: pb-3">
+      <div className="mt-8 flex flex-col items-center justify-between gap-5 md:flex-row">
+        <p className="text-sm font-light text-white-100 md:text-base md:font-normal">
           Copyright © {new Date().getFullYear()} Frank
         </p>
 
-        <div className="flex items-center md:gap-3 gap-6">
-          {socialMedia.map(({id, img, link}) => (
+        <div className="flex items-center gap-4">
+          {activeSocialMedia.map(({id, img, link}) => (
             <a 
               href={link}
               key={id}
-              className="w-10 h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-lg border border-black-300"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Social profile"
+              className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-2xl border border-white/10 bg-black-200/70 backdrop-blur-lg transition duration-300 hover:-translate-y-0.5 hover:border-purple/60 hover:bg-black-200"
             >
               <Image src={img} alt="icons" width={20} height={20} />
             </a>

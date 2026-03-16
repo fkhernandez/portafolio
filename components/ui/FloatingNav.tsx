@@ -6,7 +6,7 @@ import {
   AnimatePresence,
   useScroll,
   useMotionValueEvent,
-} from "framer-motion";
+} from "motion/react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -29,7 +29,7 @@ export const FloatingNav = ({
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     // Check if current is not undefined and is a number
     if (typeof current === "number") {
-      let direction = current! - scrollYProgress.getPrevious()!;
+      const direction = current - (scrollYProgress.getPrevious() ?? 0);
 
       if (scrollYProgress.get() < 0.05) {
         // also set true for the initial state
@@ -59,30 +59,27 @@ export const FloatingNav = ({
           duration: 0.2,
         }}
         className={cn(
-          // change rounded-full to rounded-lg
-          // remove dark:border-white/[0.2] dark:bg-black bg-white border-transparent
-          // change  pr-2 pl-8 py-2 to px-10 py-5
-          "flex max-w-fit md:min-w-[70vw] lg:min-w-fit fixed z-[5000] top-10 inset-x-0 mx-auto px-10 py-5 rounded-lg border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] items-center justify-center space-x-4",
+          "fixed inset-x-0 top-4 z-[5000] mx-auto flex w-[calc(100vw-1.5rem)] max-w-max items-center justify-center gap-1 rounded-full border border-white/10 px-2 py-2 shadow-[0_12px_40px_-20px_rgba(15,23,42,0.75)] sm:top-6 sm:w-auto sm:gap-2 sm:px-3",
           className
         )}
         style={{
           backdropFilter: "blur(16px) saturate(180%)",
           backgroundColor: "rgba(17, 25, 40, 0.75)",
-          borderRadius: "12px",
           border: "1px solid rgba(255, 255, 255, 0.125)",
         }}
       >
-        {navItems.map((navItem: any, idx: number) => (
+        {navItems.map((navItem, idx) => (
           <Link
             key={`link=${idx}`}
             href={navItem.link}
+            aria-label={navItem.name || "Home"}
             className={cn(
-              "relative dark:text-neutral-50 items-center  flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
+              "flex items-center gap-2 rounded-full px-3 py-2 text-xs font-medium text-neutral-200 transition duration-200 hover:bg-white/8 hover:text-white sm:px-4 sm:text-sm"
             )}
           >
-            <span className="block">{navItem.icon}</span>
+            <span className="block text-[0.9rem]">{navItem.icon}</span>
             
-            <span className=" text-sm !cursor-pointer">{navItem.name}</span>
+            <span className="!cursor-pointer">{navItem.name}</span>
           </Link>
         ))}
        
