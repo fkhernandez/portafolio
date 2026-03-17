@@ -3,6 +3,7 @@ import Clients from "@/components/Clients";
 import Experience from "@/components/Experience";
 import Grid from "@/components/Grid";
 import Hero from "@/components/Hero";
+import Projects from "@/components/Projects";
 import { FloatingNav } from "@/components/ui/FloatingNav";
 import Approach from "@/components/Approach";
 import Footer from "@/components/Footer";
@@ -15,12 +16,12 @@ export default function Home() {
         { name: "", link: "#home", icon: <FaHome /> },
         { name: "About", link: "#about" },
         { name: "Testimonials", link: "#testimonials" },
-        { name: "My Work", link: "#about" },
+        { name: "Projects", link: "#projects" },
       ]} />
       <Hero />
       <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <Grid />
-        {/* <RecentProjects /> */}
+        <Projects />
         <Clients />
         <Experience />
         <Approach />
