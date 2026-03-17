@@ -15,7 +15,7 @@ export default function Home() {
         { name: "", link: "#home", icon: <FaHome /> },
         { name: "About", link: "#about" },
         { name: "Testimonials", link: "#testimonials" },
-        { name: "Contact", link: "#contact" },
+        { name: "My Work", link: "#about" },
       ]} />
       <Hero />
       <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
