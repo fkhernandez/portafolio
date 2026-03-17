@@ -107,3 +107,41 @@
         @apply border border-white/10 bg-black-100/80 shadow-[0_24px_80px_-40px_rgba(76,92,163,0.45)];
     }
   }
+
+  /* ── Grid-beam electricity animations ───────────────────── */
+
+  /* Horizontal — left to right */
+  @keyframes gridBeamH {
+    0%       { left: -120px; opacity: 0; }
+    3%       { opacity: 1; }
+    26%      { left: 100%; opacity: 1; }
+    29%      { opacity: 0; }
+    100%     { opacity: 0; }
+  }
+
+  /* Horizontal — right to left */
+  @keyframes gridBeamHRev {
+    0%       { left: calc(100% + 20px); opacity: 0; }
+    3%       { opacity: 1; }
+    26%      { left: -120px; opacity: 1; }
+    29%      { opacity: 0; }
+    100%     { opacity: 0; }
+  }
+
+  /* Vertical — top to bottom */
+  @keyframes gridBeamV {
+    0%       { top: -120px; opacity: 0; }
+    3%       { opacity: 1; }
+    26%      { top: 100%; opacity: 1; }
+    29%      { opacity: 0; }
+    100%     { opacity: 0; }
+  }
+
+  /* Vertical — bottom to top */
+  @keyframes gridBeamVRev {
+    0%       { top: calc(100% + 20px); opacity: 0; }
+    3%       { opacity: 1; }
+    26%      { top: -120px; opacity: 1; }
+    29%      { opacity: 0; }
+    100%     { opacity: 0; }
+  }

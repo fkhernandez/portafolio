@@ -8,6 +8,7 @@ import BorderButton from "./ui/BorderButton";
 import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 import ContactPanel from "./ContactPanel";
+import GridBeams from "./ui/GridBeams";
 
 const HeroScene = dynamic(() => import("./ui/HeroScene"), { ssr: false });
 
@@ -33,6 +34,7 @@ const Hero = () => {
 
       <div className="absolute inset-0 flex items-center justify-center dark:bg-black-100 dark:bg-grid-white/[0.03]">
         <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black-100 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+        <GridBeams />
       </div>
 
       {/* 3D decorative scene */}

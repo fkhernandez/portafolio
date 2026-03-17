@@ -32,7 +32,7 @@
       description: "I constantly try to improve",
       className: "lg:col-span-1 md:col-span-3 md:row-span-1",
       imgClassName: "",
-      titleClassName: "justify-center",
+      titleClassName: "justify-end",
       img: "",
       spareImg: "",
     },

@@ -1,35 +1,63 @@
+"use client";
+
+import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { FaLocationArrow } from "react-icons/fa6";
 
 import { socialMedia } from "@/data";
 import BorderButton from "./ui/BorderButton";
+import ContactPanel from "./ContactPanel";
 import Image from "next/image";
 
 const Footer = () => {
-  const email = process.env.MY_EMAIL ?? "frankjaim@icloud.com";
+  const [showContact, setShowContact] = useState(false);
   const activeSocialMedia = socialMedia.filter(({ link }) => Boolean(link));
 
   return (
     <footer className="mb-10 w-full pb-10 pt-8 md:mb-0" id="contact">
       <div className="surface-panel flex flex-col items-center rounded-[2rem] px-6 py-12 text-center md:px-10 md:py-14">
-        <p className="text-sm font-medium uppercase tracking-[0.28em] text-purple/80">
-          Contact
-        </p>
-        <h1 className="heading mt-4 lg:max-w-[45vw]">
-          Ready to take <span className="text-purple">your</span> digital
-          presence to the next level?
-        </h1>
-        <p className="my-5 max-w-2xl text-center text-sm leading-7 text-white-200 md:mt-8 md:text-base">
-          Reach out to me today and let&apos;s discuss how I can help you
-          achieve your goals.
-        </p>
-        <a href={`mailto:${email}`}>
-          <BorderButton
-            title="Let's get in touch&nbsp;"
-            icon={<FaLocationArrow />}
-            position="right"
-            otherClases="gap-2 bg-slate-950/90 text-sm font-semibold text-white"
-          />
-        </a>
+        <AnimatePresence mode="wait">
+          {!showContact ? (
+            <motion.div
+              key="footer-cta"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+              className="flex flex-col items-center"
+            >
+              <p className="text-sm font-medium uppercase tracking-[0.28em] text-purple/80">
+                Contact
+              </p>
+              <h1 className="heading mt-4 lg:max-w-[45vw]">
+                Ready to take <span className="text-purple">your</span> digital
+                presence to the next level?
+              </h1>
+              <p className="my-5 max-w-2xl text-center text-sm leading-7 text-white-200 md:mt-8 md:text-base">
+                Reach out to me today and let&apos;s discuss how I can help you
+                achieve your goals.
+              </p>
+              <BorderButton
+                title="Let's get in touch&nbsp;"
+                icon={<FaLocationArrow />}
+                position="right"
+                handleClick={() => setShowContact(true)}
+                otherClases="gap-2 bg-slate-950/90 text-sm font-semibold text-white"
+              />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="footer-contact"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+              className="w-full max-w-2xl"
+            >
+              <ContactPanel onBack={() => setShowContact(false)} />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
       <div className="mt-8 flex flex-col items-center justify-between gap-5 md:flex-row">
         <p className="text-sm font-light text-white-100 md:text-base md:font-normal">

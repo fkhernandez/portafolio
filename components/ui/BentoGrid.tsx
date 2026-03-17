@@ -132,7 +132,7 @@ export const BentoGridItem = ({
 
         {id === 3 && (
 
-          <div className="absolute -right-2 top-8 flex w-fit gap-2 lg:right-3 lg:gap-4">
+          <div className="absolute right-2 top-8 flex w-fit gap-2 lg:right-6 lg:gap-4">
             <div className="flex flex-col gap-3 lg:gap-5">
               {['React.JS', 'Next.JS', 'TypeScript'].map
               ((item) => (
