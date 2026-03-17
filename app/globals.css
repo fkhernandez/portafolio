@@ -109,39 +109,41 @@
   }
 
   /* ── Grid-beam electricity animations ───────────────────── */
+  /* Use transform instead of left/top so animations run on the
+     GPU compositor and never trigger main-thread layout.        */
 
   /* Horizontal — left to right */
   @keyframes gridBeamH {
-    0%       { left: -120px; opacity: 0; }
+    0%       { transform: translateX(-120px); opacity: 0; }
     3%       { opacity: 1; }
-    26%      { left: 100%; opacity: 1; }
+    26%      { transform: translateX(60vw); opacity: 1; }
     29%      { opacity: 0; }
-    100%     { opacity: 0; }
+    100%     { transform: translateX(60vw); opacity: 0; }
   }
 
   /* Horizontal — right to left */
   @keyframes gridBeamHRev {
-    0%       { left: calc(100% + 20px); opacity: 0; }
+    0%       { transform: translateX(60vw); opacity: 0; }
     3%       { opacity: 1; }
-    26%      { left: -120px; opacity: 1; }
+    26%      { transform: translateX(-120px); opacity: 1; }
     29%      { opacity: 0; }
-    100%     { opacity: 0; }
+    100%     { transform: translateX(-120px); opacity: 0; }
   }
 
   /* Vertical — top to bottom */
   @keyframes gridBeamV {
-    0%       { top: -120px; opacity: 0; }
+    0%       { transform: translateY(-120px); opacity: 0; }
     3%       { opacity: 1; }
-    26%      { top: 100%; opacity: 1; }
+    26%      { transform: translateY(60vh); opacity: 1; }
     29%      { opacity: 0; }
-    100%     { opacity: 0; }
+    100%     { transform: translateY(60vh); opacity: 0; }
   }
 
   /* Vertical — bottom to top */
   @keyframes gridBeamVRev {
-    0%       { top: calc(100% + 20px); opacity: 0; }
+    0%       { transform: translateY(60vh); opacity: 0; }
     3%       { opacity: 1; }
-    26%      { top: -120px; opacity: 1; }
+    26%      { transform: translateY(-120px); opacity: 1; }
     29%      { opacity: 0; }
-    100%     { opacity: 0; }
+    100%     { transform: translateY(-120px); opacity: 0; }
   }

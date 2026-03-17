@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, stagger, useAnimate } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -11,9 +11,17 @@ export const TextGenerateEffect = ({
   className?: string;
 }) => {
   const [scope, animate] = useAnimate();
+  const [ready, setReady] = useState(false);
   const wordsArray = words.split(" ");
 
+  // Wait for the initial heavy rendering (3D canvas, SVG filters) to settle
   useEffect(() => {
+    const id = requestAnimationFrame(() => setReady(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  useEffect(() => {
+    if (!ready) return;
     animate(
       "span",
       {
@@ -24,7 +32,7 @@ export const TextGenerateEffect = ({
         delay: stagger(0.2),
       }
     );
-  }, [animate, words]);
+  }, [animate, words, ready]);
 
   const renderWords = () => {
     return (

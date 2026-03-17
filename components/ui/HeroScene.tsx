@@ -17,6 +17,7 @@ interface PartConfig {
 function LaptopAssembly() {
   const group = useRef<THREE.Group>(null);
   const partsRef = useRef<(THREE.Group | null)[]>([]);
+  const timeRef = useRef(0);
 
   const parts: PartConfig[] = useMemo(
     () => [
@@ -31,8 +32,10 @@ function LaptopAssembly() {
     []
   );
 
-  useFrame(({ clock }) => {
-    const t = clock.getElapsedTime();
+  useFrame((_, delta) => {
+    // Cap delta to 100ms to prevent jumps when frames drop on load
+    timeRef.current += Math.min(delta, 0.1);
+    const t = timeRef.current;
     const cycle = t % 8;
     let p: number;
     if (cycle < 2.5) p = 1 - cycle / 2.5;
@@ -120,6 +123,7 @@ function CodeLine({
 
 function Monitor() {
   const group = useRef<THREE.Group>(null);
+  const timeRef = useRef(0);
 
   const lines = useMemo(() => {
     const count = 16;
@@ -138,9 +142,10 @@ function Monitor() {
     });
   }, []);
 
-  useFrame(({ clock }) => {
+  useFrame((_, delta) => {
     if (!group.current) return;
-    const t = clock.getElapsedTime();
+    timeRef.current += Math.min(delta, 0.1);
+    const t = timeRef.current;
     group.current.rotation.y = Math.sin(t * 0.25) * 0.06;
     group.current.position.y = Math.sin(t * 0.4) * 0.04;
   });

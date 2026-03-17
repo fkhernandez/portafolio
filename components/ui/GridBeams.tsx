@@ -126,10 +126,12 @@ function BeamEl({
     borderRadius: 999,
     filter: glowShadow(beam.accent),
     animation: `${animName} ${beam.dur}s ${beam.delay}s linear infinite`,
-    willChange: "left, top, opacity",
+    opacity: 0,
+    willChange: "transform, opacity",
+    animationFillMode: "backwards",
     ...(isH
-      ? { width: beam.len, height: "100%", top: 0 }
-      : { height: beam.len, width: "100%", left: 0 }),
+      ? { width: beam.len, height: "100%", top: 0, left: 0 }
+      : { height: beam.len, width: "100%", left: 0, top: 0 }),
   };
 
   return (
