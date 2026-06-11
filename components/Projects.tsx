@@ -14,21 +14,24 @@ const liveProjects = [
   {
     title: "Rainforest 21 Automotive",
     description:
-      "A polished automotive website built to present services clearly and guide visitors toward making contact.",
+      "Service pages, trust cues, and contact paths are organized around the way local automotive customers compare shops.",
     link: "https://rainforest21automotive.com",
     tags: ["Automotive", "Website", "Responsive"],
   },
   {
     title: "East Coast Collision",
     description:
-      "A collision repair website focused on fast access to shop details, services, and customer inquiries.",
+      "Collision repair details are surfaced quickly, with a straightforward layout for estimates, services, and shop information.",
     link: "https://east-coast-collision.frank-account-5ee.workers.dev",
     tags: ["Collision Repair", "Website", "Cloudflare"],
   },
-];
-
-const placeholders = [
-  { id: 4, title: "Coming Soon", description: "More projects dropping soon." },
+  {
+    title: "Mares Flowers",
+    description:
+      "Fresh floral arrangements and event services get a warm storefront that makes browsing and reaching out feel simple.",
+    link: "https://maresflowers.com",
+    tags: ["Florist", "Website", "Local Business"],
+  },
 ];
 
 const Projects = () => {
@@ -85,28 +88,6 @@ const Projects = () => {
           </a>
         ))}
 
-        {placeholders.map((p) => (
-          <div
-            key={p.id}
-            className="relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/[0.06] p-[1px]"
-          >
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#04071d] via-[#0c0e23] to-[#04071d] opacity-60" />
-
-            <div className="relative flex flex-1 flex-col items-center justify-center p-6 py-16 text-center md:p-8 md:py-20">
-              {/* dashed ring icon */}
-              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-dashed border-white/10">
-                <span className="text-2xl text-white/20">+</span>
-              </div>
-
-              <h3 className="text-lg font-semibold tracking-tight text-white/30">
-                {p.title}
-              </h3>
-              <p className="mt-2 max-w-xs text-sm text-white/20">
-                {p.description}
-              </p>
-            </div>
-          </div>
-        ))}
       </div>
     </section>
   );
