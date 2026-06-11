@@ -1,24 +1,20 @@
 "use client";
 
 import {
-  FaWhatsapp,
-  FaTelegram,
-  FaXTwitter,
-  FaGithub,
-  FaLinkedinIn,
-  FaInstagram,
-  FaEnvelope,
   FaArrowLeft,
+  FaEnvelope,
+  FaWhatsapp,
+  FaXTwitter,
 } from "react-icons/fa6";
 
+const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "");
+
 const socials = [
-  { name: "WhatsApp", icon: FaWhatsapp, href: "https://wa.me/1234567890", color: "#25D366" },
-  { name: "Telegram", icon: FaTelegram, href: "https://t.me/placeholder", color: "#26A5E4" },
   { name: "Email", icon: FaEnvelope, href: "mailto:frankjaim@icloud.com", color: "#EA4335" },
-  { name: "GitHub", icon: FaGithub, href: "https://github.com/fkhernandez", color: "#E2E8F0" },
-  { name: "LinkedIn", icon: FaLinkedinIn, href: "https://linkedin.com/in/placeholder", color: "#0A66C2" },
-  { name: "X", icon: FaXTwitter, href: "https://x.com/placeholder", color: "#E2E8F0" },
-  { name: "Instagram", icon: FaInstagram, href: "https://instagram.com/placeholder", color: "#E4405F" },
+  { name: "X", icon: FaXTwitter, href: "https://x.com/07Balmy", color: "#E2E8F0" },
+  ...(whatsappNumber
+    ? [{ name: "WhatsApp", icon: FaWhatsapp, href: `https://wa.me/${whatsappNumber}`, color: "#25D366" }]
+    : []),
 ];
 
 export default function ContactPanel({ onBack }: { onBack: () => void }) {
