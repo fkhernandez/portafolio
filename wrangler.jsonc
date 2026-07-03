@@ -1,0 +1,47 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "frank-hernandez-portfolio",
+	"main": ".open-next/worker.js",
+	"compatibility_date": "2026-07-02",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "frank-hernandez-portfolio"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "PORTFOLIO_DB",
+      "database_name": "frank-hernandez-portfolio-submissions",
+      "database_id": "cdc1c12a-b50a-4ee3-af7e-ec13e4ba9006"
+    }
+  ],
+  "vars": {
+    "ADMIN_USERNAME": "admin"
+  },
+  "routes": [
+		{
+			"pattern": "frank-hernandez.com",
+			"custom_domain": true
+		},
+		{
+			"pattern": "www.frank-hernandez.com",
+			"custom_domain": true
+		}
+	],
+	"d1_databases": [
+		{
+			"binding": "PORTFOLIO_DB",
+			"database_name": "frank-hernandez-portfolio-submissions",
+			"database_id": "cdc1c12a-b50a-4ee3-af7e-ec13e4ba9006"
+		}
+	]
+}
